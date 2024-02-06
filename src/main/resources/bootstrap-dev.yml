@@ -1,0 +1,31 @@
+server:
+  port: 8899
+
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: gateway
+        username: nacos
+        password: nacos
+        register-enabled: true
+
+    gateway:
+      httpclient:
+        connect-timeout: 30000
+        response-timeout: 30s
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedHeaders: "*"
+            allowedMethods: "*"
+      routes: # 网关路由配置
+        #第一组网关路由配置，针对于服务user-service
+        - id: test-service
+          uri: lb://test-service
+          predicates:
+            - Path=/sb/test/**
+          filters:
+            - StripPrefix=1

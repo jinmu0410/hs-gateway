@@ -1,0 +1,17 @@
+spring:
+  application:
+    # 服务名
+    name: gateway
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        username: nacos
+        password: nacos
+        namespace: gateway
+        fileExtension: "yaml"
+        refresh-enabled: true
+
+
+
+
